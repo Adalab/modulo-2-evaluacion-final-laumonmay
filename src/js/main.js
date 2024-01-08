@@ -20,30 +20,45 @@ const favoritesData = [];  // variable de favoritos con array vacio
 
 // FUNCIONES
 
-function renderOne(charactersData) {   // para pintar un personaje
-    listCharactersCards.innerHTML += `
-        <li class="js_liCharacters" data-id="${charactersData._id}"> 
-            <h3>${charactersData.name}</h3>
-            <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
-        </li>
-    `;
-};
+function renderOne(charactersData) {
+    // para pintar un personaje
 
-function renderAll () {        // para pintar todos los personajes
-    listCharactersCards.innerHTML = "";
-    // HAGO UN BUCLE
-    for( let i=0; i<charactersData.length; i++ ) {
-        //código que queremos que se repita
-        renderOne(charactersData[i]); //utilizo la i para que se ejecute renderOne tantas veces como elementos haya en la variable charactersData
-    };
-
-    const liCharacters = document.querySelectorAll('.js_liCharacters'); // selecciono todos los li una vez se cargan en la página, no antes.Esta variable solo puede estar dentro de esta funcion o dentro de fetch, porque fuera aun no se habria cargado los elementos.
-
-    for( const liCharacter of liCharacters ) {   // bucle para repetir el addeventlistener por cada elemento
-        liCharacter.addEventListener('click', handleClickCharacter);  // invoco funcion manejeadora cada vez que se hace click
-      
-    };
+    const favoritesIdEqual = favoritesData.findIndex(  oneCharacter => oneCharacter._id === charactersData._id );
     
+    if(favoritesIdEqual === -1) {
+        listCharactersCards.innerHTML += `
+          <li class="js_liCharacters" data-id="${charactersData._id}"> 
+              <h3>${charactersData.name}</h3>
+              <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
+          </li>
+      `;
+    }
+    else {
+        listCharactersCards.innerHTML += `
+            <li class="js_liCharacters characters__favorites--selected" data-id="${charactersData._id}"> 
+                <h3>${charactersData.name}</h3>
+                <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
+            </li>
+        `;
+    }
+  
+
+}
+function renderAll() {
+  // para pintar todos los personajes
+  listCharactersCards.innerHTML = "";
+  // HAGO UN BUCLE
+  for (let i = 0; i < charactersData.length; i++) {
+    //código que queremos que se repita
+    renderOne(charactersData[i]); //utilizo la i para que se ejecute renderOne tantas veces como elementos haya en la variable charactersData
+  }
+
+  const liCharacters = document.querySelectorAll(".js_liCharacters"); // selecciono todos los li una vez se cargan en la página, no antes.Esta variable solo puede estar dentro de esta funcion o dentro de fetch, porque fuera aun no se habria cargado los elementos.
+
+  for (const liCharacter of liCharacters) {
+    // bucle para repetir el addeventlistener por cada elemento
+    liCharacter.addEventListener("click", handleClickCharacter); // invoco funcion manejeadora cada vez que se hace click
+  }
 }
 
 function renderOneFavorite(favoritesData){
@@ -113,7 +128,7 @@ form.addEventListener('submit',(event) => {
         charactersData = [];
         charactersData.push(data.dat);
     }
-    
+
     renderAll();
   
   })
