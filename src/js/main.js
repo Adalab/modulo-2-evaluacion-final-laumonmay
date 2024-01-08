@@ -7,6 +7,10 @@ console.log('>> Ready :)');
 const listCharactersCards = document.querySelector('.js_listCharactersCards');
 
 const listFavorites = document.querySelector('.js_listFavorites');
+const form = document.querySelector('.js_form');
+const inputSearch = document.querySelector('.js_inputSearch');
+const buttonSearch = document.querySelector('.js_buttonSearch');
+
 
 // VARIABLES GLOBALES
 
@@ -25,7 +29,8 @@ function renderOne(charactersData) {   // para pintar un personaje
     `;
 };
 
-function renderAll () {         // para pintar todos los personajes
+function renderAll () {        // para pintar todos los personajes
+    listCharactersCards.innerHTML = "";
     // HAGO UN BUCLE
     for( let i=0; i<charactersData.length; i++ ) {
         //código que queremos que se repita
@@ -87,33 +92,39 @@ function renderFavorites (){
         }
         else {
             favoritesData.splice(favoritesIdEqual, 1)
-        }
-
-
-
+        };
 
         renderFavorites(); // llamo a la funcion para pintar los favoritos
-
-
-        /* pinto los personajes en favoritos
-        listFavorites.innerHTML += `
-        <li class="js_liCharacters">
-            <h3>${characterIdEqual.name}</h3>
-            <img src="${characterIdEqual.imageUrl}" alt="Imagen de un personaje Disney">
-        </li>
-    `;*/
-
-
     };
 
 
 // EVENTOS
 
+form.addEventListener('submit',(event) => {
+  event.preventDefault();
+
+  fetch(`//api.disneyapi.dev/character?name=${inputSearch.value}`)
+  .then( response => response.json() )
+  .then( data => {
+    if (Array.isArray(data.data)){
+        charactersData = data.data;
+    }
+    else {
+        charactersData = [];
+        charactersData.push(data.dat);
+    }
+    
+    renderAll();
+  
+  })
+
+});
+
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
 
-fetch("https://api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
+fetch("//api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
   .then((response) => response.json())
   .then((data) => {
     charactersData = data.data; // asigno a la variable vacia el valor de los datos de la API
