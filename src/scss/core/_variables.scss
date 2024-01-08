@@ -4,3 +4,13 @@ $font-main: 'Roboto', sans-serif;
 // colors
 $color-bg: #f3f4f5;
 $color-secondary: #999;
+
+
+
+// @Mixins
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,8 +1,31 @@
 @import 'core/variables';
 @import 'core/reset';
 @import 'components/code';
-@import 'components/links';
 @import 'layout/page';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'pages/index';
+
+
+.form {
+    @include center ();
+}
+
+
+.characters {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    &__cards{
+        list-style-type: none;
+    }
+
+    &__favorites {
+        &--selected {
+            background-color: rgb(245, 42, 11);
+            color: grey;
+        }
+    }
+
+}
