@@ -14,9 +14,14 @@ const listFavorites = document.querySelector('.js_listFavorites');
 let charactersData = [];  // variable de personajes con array vacio
 const favoritesData = [];  // variable de favoritos con array vacio
 
+// LOCALSTORAGE
+
+
+
+
 // FUNCIONES
 
-function renderOne(charactersData) {   // para pintar un personaje
+function renderOneCharacter(charactersData) {   // para pintar un personaje
     listCharactersCards.innerHTML += `
         <li class="js_liCharacters" data-id="${charactersData._id}"> 
             <h3>${charactersData.name}</h3>
@@ -25,11 +30,11 @@ function renderOne(charactersData) {   // para pintar un personaje
     `;
 };
 
-function renderAll () {         // para pintar todos los personajes
+function renderAllCharacters () {         // para pintar todos los personajes
     // HAGO UN BUCLE
     for( let i=0; i<charactersData.length; i++ ) {
         //código que queremos que se repita
-        renderOne(charactersData[i]); //utilizo la i para que se ejecute renderOne tantas veces como elementos haya en la variable charactersData
+        renderOneCharacter(charactersData[i]); //utilizo la i para que se ejecute renderOne tantas veces como elementos haya en la variable charactersData
     };
 
     const liCharacters = document.querySelectorAll('.js_liCharacters'); // selecciono todos los li una vez se cargan en la página, no antes.Esta variable solo puede estar dentro de esta funcion o dentro de fetch, porque fuera aun no se habria cargado los elementos.
@@ -112,13 +117,24 @@ function renderFavorites (){
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
+const characterLs = JSON.parse(localStorage.getItem('characters')); // 
 
-fetch("https://api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
+if(characterLs === null){
+  fetch("https://api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
   .then((response) => response.json())
   .then((data) => {
     charactersData = data.data; // asigno a la variable vacia el valor de los datos de la API
-    renderAll(); // llamo a la funcion que pinta todos los personajes
-  });
+    
+    localStorage.setItem('characters',JSON.stringify(charactersData));   // Almaceno los datos del fetch en el LocalStorage
+  
+  
+    renderAllCharacters(); // llamo a la funcion que pinta todos los personajes
+    });
+}
+else{
+  charactersData = characterLs;
+  renderAllCharacters();
+}
 
 
 
