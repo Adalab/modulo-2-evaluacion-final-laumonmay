@@ -12,10 +12,16 @@ const listFavorites = document.querySelector('.js_listFavorites');
 
 
 let charactersData = [];  // variable de personajes con array vacio
-const favoritesData = [];  // variable de favoritos con array vacio
+let favoritesData = [];  // variable de favoritos con array vacio
 
-// LOCALSTORAGE
 
+const characterFavoritesLS = JSON.parse(localStorage.getItem('charactersFavorite'));
+        if(characterFavoritesLS){
+          favoritesData  = characterFavoritesLS;
+
+          renderFavorites(listFavorites);
+
+        }
 
 
 
@@ -61,6 +67,7 @@ function renderFavorites (){
     for( let i=0; i<favoritesData.length; i++ ) {
       renderOneFavorite(favoritesData[i]);
     };
+
 }
 
 
@@ -85,6 +92,7 @@ function renderFavorites (){
 
         console.log(favoritesIdEqual);
 
+        
         if(favoritesIdEqual===-1){
 
             
@@ -92,8 +100,11 @@ function renderFavorites (){
         }
         else {
             favoritesData.splice(favoritesIdEqual, 1)
-        }
 
+           
+        }
+         
+          localStorage.setItem('charactersFavorite', JSON.stringify(favoritesData));
 
 
 
@@ -120,7 +131,8 @@ function renderFavorites (){
 const characterLs = JSON.parse(localStorage.getItem('characters')); // 
 
 if(characterLs === null){
-  fetch("https://api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
+
+fetch("https://api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
   .then((response) => response.json())
   .then((data) => {
     charactersData = data.data; // asigno a la variable vacia el valor de los datos de la API
@@ -128,12 +140,13 @@ if(characterLs === null){
     localStorage.setItem('characters',JSON.stringify(charactersData));   // Almaceno los datos del fetch en el LocalStorage
   
   
-    renderAllCharacters(); // llamo a la funcion que pinta todos los personajes
+    renderAllCharacters(charactersData); // llamo a la funcion que pinta todos los personajes
     });
 }
 else{
   charactersData = characterLs;
-  renderAllCharacters();
+
+  renderAllCharacters(charactersData);
 }
 
 
