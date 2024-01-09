@@ -15,21 +15,12 @@ let charactersData = [];  // variable de personajes con array vacio
 let favoritesData = [];  // variable de favoritos con array vacio
 
 
-const characterFavoritesLS = JSON.parse(localStorage.getItem('charactersFavorite'));
-        if(characterFavoritesLS){
-          favoritesData  = characterFavoritesLS;
-
-          renderFavorites(listFavorites);
-
-        }
-
-
 
 // FUNCIONES
 
 function renderOneCharacter(charactersData) {   // para pintar un personaje
-    listCharactersCards.innerHTML += `
-        <li class="js_liCharacters" data-id="${charactersData._id}"> 
+  listCharactersCards.innerHTML += `
+  <li class="js_liCharacters" data-id="${charactersData._id}"> 
             <h3>${charactersData.name}</h3>
             <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
         </li>
@@ -73,19 +64,12 @@ function renderFavorites (){
 
 // FUNCIONES MANEJADORAS
     function handleClickCharacter (event) {   //declaro la funcion manejadora
-    
         const clickCharacter = event.currentTarget;
-
         clickCharacter.classList.toggle('characters__favorites--selected');
-
         const clickCharacterId = parseInt(clickCharacter.dataset.id); // atributo gancho
-
         console.log(clickCharacterId);
-
         // Busca en la variable del array de personajes, uno que su id sea igual al id al que se hace click y lo guardo en una variable.
-
         const characterIdEqual = charactersData.find(  oneCharacter => oneCharacter._id === clickCharacterId);
-
         // Busca en la variable del array de favoritos, un personaje que su id sea igual al id al que se hace click y lo guardo en una variable.
 
         const favoritesIdEqual = favoritesData.findIndex(  oneCharacter => oneCharacter._id === clickCharacterId );
@@ -95,32 +79,24 @@ function renderFavorites (){
         
         if(favoritesIdEqual===-1){
 
-            
             favoritesData.push(characterIdEqual);// añadir en favoritos los personajes con mismo id
         }
         else {
             favoritesData.splice(favoritesIdEqual, 1)
-
-           
         }
-         
-          localStorage.setItem('charactersFavorite', JSON.stringify(favoritesData));
-
-
-
+        
         renderFavorites(); // llamo a la funcion para pintar los favoritos
 
-
-        /* pinto los personajes en favoritos
-        listFavorites.innerHTML += `
-        <li class="js_liCharacters">
-            <h3>${characterIdEqual.name}</h3>
-            <img src="${characterIdEqual.imageUrl}" alt="Imagen de un personaje Disney">
-        </li>
-    `;*/
-
-
+        localStorage.setItem('charactersFavorite', JSON.stringify(favoritesData)); // // Almaceno los los favoritos en el LocalStorage
     };
+
+    const characterFavoritesLS = JSON.parse(localStorage.getItem('charactersFavorite'));  // almaceno la variable del localStorage
+      if(characterFavoritesLS){
+      favoritesData  = characterFavoritesLS;
+
+      renderFavorites();
+
+      };
 
 
 // EVENTOS
@@ -128,7 +104,7 @@ function renderFavorites (){
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
-const characterLs = JSON.parse(localStorage.getItem('characters')); // 
+const characterLs = JSON.parse(localStorage.getItem('characters')); // almaceno la variable del localStorage
 
 if(characterLs === null){
 
