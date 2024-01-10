@@ -27,17 +27,17 @@ function renderOne(charactersData) {
     
     if(favoritesIdEqual === -1) {
         listCharactersCards.innerHTML += `
-          <li class="js_liCharacters" data-id="${charactersData._id}"> 
-              <h3>${charactersData.name}</h3>
-              <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
+          <li class="characters__cards js_liCharacters" data-id="${charactersData._id}"> 
+              <h3 class="characters__text-card">${charactersData.name}</h3>
+              <img class="characters__img-card" src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
           </li>
       `;
     }
     else {
         listCharactersCards.innerHTML += `
-            <li class="js_liCharacters characters__favorites--selected" data-id="${charactersData._id}"> 
-                <h3>${charactersData.name}</h3>
-                <img src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
+            <li class="characters__cards js_liCharacters characters__favorites--selected" data-id="${charactersData._id}"> 
+                <h3 class="characters__text-card">${charactersData.name}</h3>
+                <img class="characters__img-card" src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
             </li>
         `;
     }
@@ -63,9 +63,9 @@ function renderAll() {
 
 function renderOneFavorite(favoritesData){
     listFavorites.innerHTML += `
-        <li class="js_liCharacters"> 
-            <h3>${favoritesData.name}</h3>
-            <img src="${favoritesData.imageUrl}" alt="Imagen de un personaje Disney">
+        <li class="characters__cards js_liCharacters"> 
+            <h3 class="characters__text-card">${favoritesData.name}</h3>
+            <img class="characters__img-card" src="${favoritesData.imageUrl}" alt="Imagen de un personaje Disney">
         </li>
     `;
 }

@@ -1,55 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adalab Web Starter Kit</title>
-    <link rel="stylesheet" href="./scss/main.scss" />
-    <link rel="icon" href="./images/favicon.png" />
-  </head>
 
-  <body>
-    <!-- <div class="page">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adalab Web Starter Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Mouse+Memoirs&family=Permanent+Marker&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./scss/main.scss" />
+  <link rel="icon" href="./images/favicon.png" />
+</head>
+
+<body>
+  <!-- <div class="page">
       <load src="./partials/header.html" title="Bienvenidos a Adalab" />
       <load src="./partials/main.html" />
       <load src="./partials/footer.html" />
-    </div> --> 
+    </div> -->
 
-    <header>
-      imagen del header
-    </header>
+  <header class="header">
+    <figure class="header__figure">
 
-    <main class="main">
+      <img class="header__img2" src="/images/img2.png" alt="">
 
-      <form class="form js_form">
-        <label class="" for="">
-          <input class="search_input js_inputSearch" type="text" name="" id="" placeholder="Ej: Aladdin">
-        </label>
+      <img class="header__img3" src="/images/img3.png" alt="">
+    </figure>
+    <div>
+      <p class="header__text">Aquí encontrarás a tu personaje favorito</p>
+      <p class="header__text2">nosotros te ayudaremos colega!</p>
+    </div>
 
-        <input class="search_button js_buttonSearch" type="submit" value="Search">
+  </header>
 
-      </form>
+  <main class="main">
 
-      <section class="characters">
-        
-        <section class="characters__list">  <!--LISTADO-->
-          <h2>LISTADO PERSONAJES</h2>
-          <ul class="characters__cards js_listCharactersCards">
-            
-          </ul>
-        </section>
+    <form class="form js_form">
+      <input class="form__input js_inputSearch" type="text" name="" id="" placeholder="Ej: Aladdin">
+      <input class="form__button js_buttonSearch" type="submit" value="Search">
+    </form>
+    <section class="characters">
+      <section class="characters__list"> <!--LISTADO-->
+        <h2 class="characters__tittle">Characters</h2>
 
-        <section class="characters__favorites"> <!--FAVORITOS-->
-          <h2>Favorites</h2>
-          <ul class="characters__cards--favorites js_listFavorites">
-            
-          </ul>
-        </section>
+        <ul class="characters__ul js_listCharactersCards">
 
+        </ul>
       </section>
-    </main>
+
+      <section class="characters__favorites"> <!--FAVORITOS-->
+        <h2 class="characters__tittleF">Favorites ♥ </h2>
+        <ul class="characters__cards--favorites js_listFavorites">
+          <!-- <li class="characters__cards js_liCharacters"> 
+            <h3 class="characters__text">${favoritesData.name}</h3>
+            <img class="characters__img" src="${favoritesData.imageUrl}" alt="Imagen de un personaje Disney"> -->
+          </li>
+          `;
+        </ul>
+      </section>
+
+    </section>
+  </main>
 
 
-    <script src="./js/main.js"></script>
-  </body>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>
