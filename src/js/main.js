@@ -126,7 +126,7 @@ form.addEventListener('submit',(event) => {
     }
     else {
         charactersData = [];
-        charactersData.push(data.dat);
+        charactersData.push(data.data);
     }
 
     renderAll();
