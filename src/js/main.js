@@ -16,7 +16,7 @@ const buttonSearch = document.querySelector('.js_buttonSearch');
 
 
 let charactersData = [];  // variable de personajes con array vacio
-const favoritesData = [];  // variable de favoritos con array vacio
+let favoritesData = [];  // variable de favoritos con array vacio
 
 // FUNCIONES
 
@@ -110,8 +110,16 @@ function renderFavorites (){
         };
 
         renderFavorites(); // llamo a la funcion para pintar los favoritos
-    };
 
+        localStorage.setItem('charactersFavorite', JSON.stringify(favoritesData)); // // Almaceno los los favoritos en el LocalStorage
+    };
+  const characterFavoritesLS = JSON.parse(localStorage.getItem('charactersFavorite'));  // almaceno la variable del localStorage
+      if(characterFavoritesLS){
+      favoritesData  = characterFavoritesLS;
+
+      renderFavorites();
+
+      };
 
 // EVENTOS
 
@@ -138,13 +146,24 @@ form.addEventListener('submit',(event) => {
 
 // CÓDIGO CUANDO CARGA LA PÁGINA
 
+const characterLs = JSON.parse(localStorage.getItem('characters')); // almaceno la variable del localStorage
 
+if(characterLs === null){
 fetch("//api.disneyapi.dev/character?pageSize=50") // FETCH para coger todos los personajes de la API en un array
   .then((response) => response.json())
   .then((data) => {
     charactersData = data.data; // asigno a la variable vacia el valor de los datos de la API
+  
+    localStorage.setItem('characters',JSON.stringify(charactersData));   // Almaceno los datos del fetch en el LocalStorage
+
     renderAll(); // llamo a la funcion que pinta todos los personajes
   });
+}
+else{
+  charactersData = characterLs;
+
+  renderAll(charactersData);
+};
 
 
 
