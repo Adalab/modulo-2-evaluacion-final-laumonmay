@@ -1,69 +1,84 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Adalab Web Starter Kit</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    
-    <link rel="icon" href="./images/favicon.png" />
-    <link rel="stylesheet" href="./assets/main-62015576.css">
-  </head>
 
-  <body>
-    <div class="page">
-      <header class="page__header">
-  <img src="./images/logo-adalab.png" alt="Adalab">
-  <h1>Bienvenidos a Adalab</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tus personajes Disney</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam&family=Mouse+Memoirs&family=Permanent+Marker&display=swap"
+    rel="stylesheet">
+
+  
+  <link rel="icon" href="./images/favicon.png" />
+  <link rel="stylesheet" href="./assets/index-518ac29a.css">
+</head>
+
+<body>
+  <!-- <div class="page">
+      <header>
+ 
 </header>
 
-      <main class="page__main">
-  <h2>Este es el starter kit de Adalab</h2>
-  <p>Lo usamos para aprender:</p>
-  <ul class="main__list">
-    <li>Sass</li>
-    <li>HTML partials</li>
-    <li>Gulp</li>
-    <li>y muchas cosas más</li>
-  </ul>
-  <p>Si quieres saber cúales son las rutas correctas para:</p>
-  <ul class="main__list">
-    <li>
-      una <code class="code">&lt;img /&gt;</code> mira el fichero
-      <code class="code">./src/html/partials/header.html</code>.
-    </li>
-    <li>
-      y para un <code class="code">background-image</code> mira el fichero
-      <code class="code">./src/html/scss/layout/_page.scss</code>.
-    </li>
-  </ul>
-  <p>
-    Si quieres saber cómo usar un partial HTML dentro de otro partial, busca en la carperta
-    <code class="code">./src/html/index.html</code> y
-    <code class="code">./src/html/partials/main.html</code>, y verás cómo estamos creando estos
-    enlaces:
-  </p>
-  <ul class="main__list">
-    <li>
-      <a class="link__adalab" href="https://adalab.es">Adalab</a>
-
-    </li>
-    <li>
-      <a class="{=$aClass}" href="./more-info.html">Más info del starter kit</a>
-
-    </li>
-  </ul>
+      <main>
+  
 </main>
 
       <footer class="page__footer">
   <small>
     &copy; Todos los derechos reservados
-    <a class="link__adalab" href="https://adalab.es">Adalab</a>
-
+    
   </small>
 </footer>
 
+    </div> -->
+
+  <header class="header">
+    <figure class="header__figure">
+
+      <img class="header__img2" src="./images/img2.png" alt="">
+
+      <img class="header__img3" src="./images/img3.png" alt="">
+    </figure>
+    <div>
+      <p class="header__text">Aquí encontrarás a tu personaje favorito</p>
+      <p class="header__text2">nosotros te ayudaremos colega!</p>
     </div>
-    <script src="./js/main.js"></script>
-  </body>
+
+  </header>
+
+  <main class="main">
+
+    <form class="form js_form">
+      <input class="form__input js_inputSearch" type="text" name="" id="" placeholder="Ej: Aladdin">
+      <input class="form__button js_buttonSearch" type="submit" value="Search">
+    </form>
+    <section class="characters">
+      <section class="characters__list"> <!--LISTADO-->
+        <h2 class="characters__tittle">Characters</h2>
+
+        <ul class="characters__ul js_listCharactersCards">
+
+        </ul>
+      </section>
+
+      <section class="characters__favorites"> <!--FAVORITOS-->
+        <h2 class="characters__tittleF">Favorites ♥ </h2>
+        <ul class="characters__cards--favorites js_listFavorites">
+          <!-- <li class="characters__cards js_liCharacters"> 
+            <h3 class="characters__text">${favoritesData.name}</h3>
+            <img class="characters__img" src="${favoritesData.imageUrl}" alt="Imagen de un personaje Disney"> -->
+          </li>
+          `;
+        </ul>
+      </section>
+
+    </section>
+  </main>
+
+
+  <script src="./js/main.js"></script>
+</body>
+
 </html>
