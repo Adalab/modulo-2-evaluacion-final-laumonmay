@@ -10,6 +10,7 @@ const listFavorites = document.querySelector('.js_listFavorites');
 const form = document.querySelector('.js_form');
 const inputSearch = document.querySelector('.js_inputSearch');
 const buttonSearch = document.querySelector('.js_buttonSearch');
+const logButton = document.querySelector('.js_logButton');
 
 
 // VARIABLES GLOBALES
@@ -29,6 +30,7 @@ function renderOne(charactersData) {
         listCharactersCards.innerHTML += `
           <li class="characters__cards js_liCharacters" data-id="${charactersData._id}"> 
               <h3 class="characters__text-card">${charactersData.name}</h3>
+              <p>${charactersData.updatedAt}</p>
               <img class="characters__img-card" src="${charactersData.imageUrl}" alt="Imagen de un personaje Disney">
           </li>
       `;
@@ -141,6 +143,11 @@ form.addEventListener('submit',(event) => {
   
   })
 
+});
+
+logButton.addEventListener('click',(event) => {
+  const number = favoritesData.length
+  console.log(`Tienes ${number} favoritos`);
 });
 
 
